@@ -67,6 +67,15 @@ local SupportedGames = {
             }
         }
     },
+    [3623096087] = {
+        GameName = "Muscle Legends",
+        Options = {
+            {
+                Name = "Muscle Legends",
+                ScriptURL = "SourceCodeMuscleLegends.lua"
+            }
+        }
+    },
     [121330469999373] = {
         GameName = "MMV",
         Options = {

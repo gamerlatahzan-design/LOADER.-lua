@@ -58,30 +58,12 @@ local SupportedGames = {
             }
         }
     },
-    [142823291] = {
-        GameName = "Murder Mystery 2",
-        Options = {
-            {
-                Name = "Murder Mystery 2",
-                ScriptURL = "SourceCodeMM2Version.lua"
-            }
-        }
-    },
     [3623096087] = {
         GameName = "Muscle Legends",
         Options = {
             {
                 Name = "Muscle Legends",
                 ScriptURL = "SourceCodeMuscleLegends.lua"
-            }
-        }
-    },
-    [121330469999373] = {
-        GameName = "MMV",
-        Options = {
-            {
-                Name = "MMV",
-                ScriptURL = "SourceCodeMM2Version.lua"
             }
         }
     }

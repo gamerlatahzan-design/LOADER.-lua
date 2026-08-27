@@ -66,24 +66,6 @@ local SupportedGames = {
                 ScriptURL = "SourceCodeMuscleLegends.lua"
             }
         }
-    },
-    [3260590327] = {
-        GameName = "Tower Defense Simulator",
-        Options = {
-            {
-                Name = "Tower Defense Simulator",
-                ScriptURL = "SourceCodeTowerDefenseSimulator.lua"
-            }
-        }
-    },
-    [5591597781] = {
-        GameName = "Tower Defense Simulator",
-        Options = {
-            {
-                Name = "Tower Defense Simulator",
-                ScriptURL = "SourceCodeTowerDefenseSimulator.lua"
-            }
-        }
     }
 }
 

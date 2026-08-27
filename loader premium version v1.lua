@@ -75,6 +75,15 @@ local SupportedGames = {
                 ScriptURL = "SourceCodeTowerDefenseSimulator.lua"
             }
         }
+    },
+    [5591597781] = {
+        GameName = "Tower Defense Simulator",
+        Options = {
+            {
+                Name = "Tower Defense Simulator",
+                ScriptURL = "SourceCodeTowerDefenseSimulator.lua"
+            }
+        }
     }
 }
 
@@ -242,7 +251,7 @@ local function CreateSelectorUI(gameData, onSelected)
     LiteIcon.Position = UDim2.new(0, 0, 0.5, 0)
     LiteIcon.AnchorPoint = Vector2.new(0, 0.5)
     LiteIcon.BackgroundTransparency = 1
-    LiteIcon.Image = "rbxthumb://type=Asset&id=7734091286&w=150&h=150" -- Using rbxthumb for guaranteed render
+    LiteIcon.Image = "rbxthumb://type=Asset&id=7734091286&w=150&h=150"
     LiteIcon.ImageColor3 = Color3.fromRGB(220, 180, 255)
     LiteIcon.ScaleType = Enum.ScaleType.Fit
     LiteIcon.Parent = LiteHeaderRow
@@ -289,7 +298,7 @@ local function CreateSelectorUI(gameData, onSelected)
     MaxIcon.Position = UDim2.new(0, 0, 0.5, 0)
     MaxIcon.AnchorPoint = Vector2.new(0, 0.5)
     MaxIcon.BackgroundTransparency = 1
-    MaxIcon.Image = "rbxthumb://type=Asset&id=10723376114&w=150&h=150" -- Using rbxthumb for guaranteed render
+    MaxIcon.Image = "rbxthumb://type=Asset&id=10723376114&w=150&h=150"
     MaxIcon.ImageColor3 = Color3.fromRGB(220, 180, 255)
     MaxIcon.ScaleType = Enum.ScaleType.Fit
     MaxIcon.Parent = MaxHeaderRow
@@ -494,7 +503,7 @@ local function CreateSelectorUI(gameData, onSelected)
     DiscordIcon.Position = UDim2.new(0, 14, 0.5, 0)
     DiscordIcon.AnchorPoint = Vector2.new(0, 0.5)
     DiscordIcon.BackgroundTransparency = 1
-    DiscordIcon.Image = "rbxthumb://type=Asset&id=10734888228&w=150&h=150" -- Using rbxthumb
+    DiscordIcon.Image = "rbxthumb://type=Asset&id=10734888228&w=150&h=150"
     DiscordIcon.ImageColor3 = Color3.fromRGB(180, 140, 255)
     DiscordIcon.ScaleType = Enum.ScaleType.Fit
     DiscordIcon.Parent = DiscordFrame
@@ -569,7 +578,7 @@ local function CreateSelectorUI(gameData, onSelected)
 
         while MainFrame and MainFrame.Parent do
             timer = timer + 0.03
-            local alpha = (math.sin(timer) + 1) / 2 -- Smooth sine wave transition
+            local alpha = (math.sin(timer) + 1) / 2
             local animatedColor = colorWhite:Lerp(colorPurple, alpha)
 
             MainStroke.Color = animatedColor
@@ -591,11 +600,7 @@ local function CreateSelectorUI(gameData, onSelected)
     }):Play()
 end
 
--- [[ FLOW CONTROLLER ]]
-if #GameData.Options > 1 then
-    CreateSelectorUI(GameData, function(selectedOption)
-        ExecuteScript(selectedOption)
-    end)
-else
-    ExecuteScript(GameData.Options[1])
-end
+-- [[ INITIALIZE ]]
+CreateSelectorUI(GameData, function(selectedOption)
+    ExecuteScript(selectedOption)
+end)

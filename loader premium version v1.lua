@@ -66,6 +66,15 @@ local SupportedGames = {
                 ScriptURL = "SourceCodeMuscleLegends.lua"
             }
         }
+    },
+    [107778070777162] = {
+        GameName = "Steal An Egg",
+        Options = {
+            {
+                Name = "Steal An Egg",
+                ScriptURL = "SourceCodeStealAnEgg.lua"
+            }
+        }
     }
 }
 

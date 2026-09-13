@@ -68,30 +68,31 @@ local SupportedGames = {
         }
     },
     -- [[ BLOX FRUITS - ALL SEAS ]]
-[2753915549] = {
-    GameName = "Blox Fruits",
-    Options = {
-        {
-            Name = "sea1",
-            ScriptURL = "SourceCodeBloxFruitsSea1.lua"
+    [2753915549] = {
+        GameName = "Blox Fruits",
+        Options = {
+            {
+                Name = "sea1",
+                ScriptURL = "SourceCodeBloxFruit.lua"
+            }
         }
-    }
-},
-[4442272183] = {
-    GameName = "Blox Fruits",
-    Options = {
-        {
-            Name = "sea2",
-            ScriptURL = "SourceCodeBloxFruitsSea2.lua"
+    },
+    [4442272183] = {
+        GameName = "Blox Fruits",
+        Options = {
+            {
+                Name = "sea2",
+                ScriptURL = "SourceCodeBloxFruit.lua"
+            }
         }
-    }
-},
-[7449423635] = {
-    GameName = "Blox Fruits",
-    Options = {
-        {
-            Name = "sea3",
-            ScriptURL = "SourceCodeBloxFruitsSea3.lua"
+    },
+    [7449423635] = {
+        GameName = "Blox Fruits",
+        Options = {
+            {
+                Name = "sea3",
+                ScriptURL = "SourceCodeBloxFruit.lua"
+            }
         }
     }
 }

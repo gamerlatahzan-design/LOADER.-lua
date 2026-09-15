@@ -67,6 +67,15 @@ local SupportedGames = {
             }
         }
     },
+    [101558013317432] = {
+        GameName = "1+ Slash Per Click",
+        Options = {
+            {
+                Name = "1+ Slash Per Click",
+                ScriptURL = "SourceCodeSlashPerClick.lua"
+            }
+        }
+    },
     -- [[ BLOX FRUITS - ALL SEAS ]]
     [2753915549] = {
         GameName = "Blox Fruits",

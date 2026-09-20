@@ -1,5 +1,5 @@
 -- [[ LOUIS HUB: SIMPLIFIED HYBRID LOADER ]]
--- AUTH: Louis | VERSION: 1.8 (FREE - WITH CATEGORY SELECTOR)
+-- AUTH: Louis | VERSION: 1.8 (FREE - WITH AUTO-DIRECT EXECUTION)
 
 local Players = game:GetService("Players")
 local HttpService = game:GetService("HttpService")
@@ -67,15 +67,6 @@ local SupportedGames = {
             }
         }
     },
-    [101558013317432] = {
-        GameName = "1+ Slash Per Click",
-        Options = {
-            {
-                Name = "1+ Slash Per Click",
-                ScriptURL = "SourceCodeSlashPerClick.lua"
-            }
-        }
-    },
     -- [[ BLOX FRUITS - ALL SEAS ]]
     [2753915549] = {
         GameName = "Blox Fruits",
@@ -110,14 +101,14 @@ local CurrentPlaceID = game.PlaceId
 local CurrentUniverseID = game.GameId
 local GameData = SupportedGames[CurrentPlaceID] or SupportedGames[CurrentUniverseID]
 
--- Map ID Validation & Fallback Logic
+-- Map ID Validation & Fallback Logic (Dikosongkan sesuai permintaan)
 if not GameData then
     GameData = {
-        GameName = "Universal Aimbot",
+        GameName = "Universal",
         Options = {
             {
-                Name = "Universal Aimbot",
-                ScriptURL = "SourceCodeAimbotUniversalVersion.lua"
+                Name = "Universal",
+                ScriptURL = ""
             }
         }
     }
@@ -125,6 +116,10 @@ end
 
 -- [[ FETCH & EXECUTION ]]
 local function ExecuteScript(selectedOption)
+    if not selectedOption or not selectedOption.ScriptURL or selectedOption.ScriptURL == "" then
+        return
+    end
+
     local content
     for i = 1, 3 do
         local success, res = pcall(function() 
@@ -196,7 +191,7 @@ local function CreateSelectorUI(gameData, onSelected)
     InfoFrame.Position = UDim2.new(0.5, -165, 0.5, 0)
     InfoFrame.Size = UDim2.new(0, 230, 0, 0)
     InfoFrame.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
-    InfoFrame.BackgroundTransparency = 0.4 -- 40% Background Transparency
+    InfoFrame.BackgroundTransparency = 0.4
     InfoFrame.BorderSizePixel = 0
     InfoFrame.ClipsDescendants = true
     InfoFrame.Parent = ScreenGui
@@ -253,7 +248,7 @@ local function CreateSelectorUI(gameData, onSelected)
     InfoListLayout.Padding = UDim.new(0, 6)
     InfoListLayout.Parent = InfoContent
 
-    -- Lite Info Section (Lucide Icon: zap via rbxthumb)
+    -- Lite Info Section
     local LiteHeaderRow = Instance.new("Frame")
     LiteHeaderRow.Size = UDim2.new(1, 0, 0, 16)
     LiteHeaderRow.BackgroundTransparency = 1
@@ -300,7 +295,7 @@ local function CreateSelectorUI(gameData, onSelected)
     Separator.BorderSizePixel = 0
     Separator.Parent = InfoContent
 
-    -- Max Info Section (Lucide Icon: flame via rbxthumb)
+    -- Max Info Section
     local MaxHeaderRow = Instance.new("Frame")
     MaxHeaderRow.Size = UDim2.new(1, 0, 0, 16)
     MaxHeaderRow.BackgroundTransparency = 1
@@ -349,7 +344,7 @@ local function CreateSelectorUI(gameData, onSelected)
     MainFrame.Position = UDim2.new(0.5, 115, 0.5, -32)
     MainFrame.Size = UDim2.new(0, 310, 0, 0)
     MainFrame.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
-    MainFrame.BackgroundTransparency = 0.4 -- 40% Background Transparency
+    MainFrame.BackgroundTransparency = 0.4
     MainFrame.BorderSizePixel = 0
     MainFrame.ClipsDescendants = true
     MainFrame.Parent = ScreenGui
@@ -462,7 +457,6 @@ local function CreateSelectorUI(gameData, onSelected)
 
         -- Close UI & Exit Blur Animation On Select
         Button.MouseButton1Click:Connect(function()
-            -- Play Exit Tweens
             local closeMain = TweenService:Create(MainFrame, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
                 Size = UDim2.new(0, 310, 0, 0)
             })
@@ -494,7 +488,7 @@ local function CreateSelectorUI(gameData, onSelected)
     DiscordFrame.Position = UDim2.new(0.5, 115, 0.5, (targetHeight / 2) - 22)
     DiscordFrame.Size = UDim2.new(0, 310, 0, 52)
     DiscordFrame.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
-    DiscordFrame.BackgroundTransparency = 0.4 -- 40% Background Transparency
+    DiscordFrame.BackgroundTransparency = 0.4
     DiscordFrame.BorderSizePixel = 0
     DiscordFrame.AutoButtonColor = false
     DiscordFrame.Text = ""
@@ -615,6 +609,22 @@ local function CreateSelectorUI(gameData, onSelected)
 end
 
 -- [[ INITIALIZE ]]
-CreateSelectorUI(GameData, function(selectedOption)
-    ExecuteScript(selectedOption)
-end)
+local isTimebombGame = false
+if GameData and GameData.GameName then
+    local nameLower = GameData.GameName:lower()
+    if nameLower:find("timebomb") or nameLower:find("time bomb") then
+        isTimebombGame = true
+    end
+end
+
+-- Hanya Timebomb Duels yang memunculkan UI selektor versi
+if isTimebombGame and #GameData.Options > 1 then
+    CreateSelectorUI(GameData, function(selectedOption)
+        ExecuteScript(selectedOption)
+    end)
+else
+    -- Game lain (Blox Fruits, Muscle Legends, dll.) langsung jalan tanpa UI pemilihan
+    if GameData and GameData.Options and GameData.Options[1] then
+        ExecuteScript(GameData.Options[1])
+    end
+end

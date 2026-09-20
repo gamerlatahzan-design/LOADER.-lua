@@ -1,5 +1,5 @@
 -- [[ LOUIS HUB: SIMPLIFIED HYBRID LOADER ]]
--- AUTH: Louis | VERSION: 1.8 (PREMIUM - WITH CATEGORY SELECTOR)
+-- AUTH: Louis | VERSION: 1.8 (PREMIUM - WITH AUTO-DIRECT EXECUTION)
 
 local Players = game:GetService("Players")
 local HttpService = game:GetService("HttpService")
@@ -67,15 +67,6 @@ local SupportedGames = {
             }
         }
     },
-    [101558013317432] = {
-        GameName = "1+ Slash Per Click",
-        Options = {
-            {
-                Name = "1+ Slash Per Click",
-                ScriptURL = "SourceCodeSlashPerClick.lua"
-            }
-        }
-    },
     -- [[ BLOX FRUITS - ALL SEAS ]]
     [2753915549] = {
         GameName = "Blox Fruits",
@@ -110,14 +101,14 @@ local CurrentPlaceID = game.PlaceId
 local CurrentUniverseID = game.GameId
 local GameData = SupportedGames[CurrentPlaceID] or SupportedGames[CurrentUniverseID]
 
--- Map ID Validation & Fallback Logic
+-- Map ID Validation & Fallback Logic (Method dikosongkan)
 if not GameData then
     GameData = {
-        GameName = "Universal Aimbot",
+        GameName = "Universal",
         Options = {
             {
-                Name = "Universal Aimbot",
-                ScriptURL = "SourceCodeAimbotUniversalVersion.lua"
+                Name = "Universal",
+                ScriptURL = ""
             }
         }
     }
@@ -131,6 +122,10 @@ end
 -- [[ FETCH & EXECUTION ]]
 local function ExecuteScript(selectedOption)
     if not VerifyWhitelist() then
+        return
+    end
+
+    if not selectedOption or not selectedOption.ScriptURL or selectedOption.ScriptURL == "" then
         return
     end
 
@@ -620,6 +615,22 @@ local function CreateSelectorUI(gameData, onSelected)
 end
 
 -- [[ INITIALIZE ]]
-CreateSelectorUI(GameData, function(selectedOption)
-    ExecuteScript(selectedOption)
-end)
+local isTimebombGame = false
+if GameData and GameData.GameName then
+    local nameLower = GameData.GameName:lower()
+    if nameLower:find("timebomb") or nameLower:find("time bomb") then
+        isTimebombGame = true
+    end
+end
+
+-- Hanya Timebomb Duels yang memunculkan UI selektor versi
+if isTimebombGame and #GameData.Options > 1 then
+    CreateSelectorUI(GameData, function(selectedOption)
+        ExecuteScript(selectedOption)
+    end)
+else
+    -- Game lain (Blox Fruits, Muscle Legends, dll.) langsung jalan tanpa UI pemilihan
+    if GameData and GameData.Options and GameData.Options[1] then
+        ExecuteScript(GameData.Options[1])
+    end
+end

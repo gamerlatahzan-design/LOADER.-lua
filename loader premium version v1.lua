@@ -66,34 +66,6 @@ local SupportedGames = {
                 ScriptURL = "SourceCodeMuscleLegends.lua"
             }
         }
-    },
-    -- [[ BLOX FRUITS - ALL SEAS ]]
-    [2753915549] = {
-        GameName = "Blox Fruits",
-        Options = {
-            {
-                Name = "sea1",
-                ScriptURL = "SourceCodeBloxFruit.lua"
-            }
-        }
-    },
-    [4442272183] = {
-        GameName = "Blox Fruits",
-        Options = {
-            {
-                Name = "sea2",
-                ScriptURL = "SourceCodeBloxFruit.lua"
-            }
-        }
-    },
-    [7449423635] = {
-        GameName = "Blox Fruits",
-        Options = {
-            {
-                Name = "sea3",
-                ScriptURL = "SourceCodeBloxFruit.lua"
-            }
-        }
     }
 }
 
